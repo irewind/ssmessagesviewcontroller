@@ -12,7 +12,7 @@
 static UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 static CGFloat kMaxWidth = 223.0f; // TODO: Make dynamic
 static CGFloat kPaddingTop = 4.0f;
-static CGFloat kPaddingBottom = 8.0f;
+static CGFloat kPaddingBottom = 6.0f;
 static CGFloat kMarginTop = 2.0f;
 static CGFloat kMarginBottom = 2.0f;
 
@@ -56,7 +56,8 @@ static CGFloat kMarginBottom = 2.0f;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
+//		self.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
+        self.backgroundColor = [UIColor clearColor];
 	}
 	return self;
 }
@@ -71,6 +72,11 @@ static CGFloat kMarginBottom = 2.0f;
 	CGSize textSize = [[self class] textSizeForText:_messageText];
 	CGFloat textX = (CGFloat)bubbleImage.leftCapWidth - 3.0f + ((_messageStyle == SSMessageStyleRight) ? bubbleFrame.origin.x : 0.0f);
 	CGRect textFrame = CGRectMake(textX, kPaddingTop + kMarginTop, textSize.width, textSize.height);
+    if (_messageStyle == SSMessageStyleRight)
+        [[UIColor whiteColor] set];
+    else
+        [[UIColor darkGrayColor] set];
+    
 	[_messageText drawInRect:textFrame withFont:kFont lineBreakMode:kLineBreakMode alignment:(_messageStyle == SSMessageStyleRight) ? UITextAlignmentRight : UITextAlignmentLeft];
 }
 
