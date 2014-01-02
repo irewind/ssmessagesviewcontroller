@@ -10,6 +10,7 @@
 #import "SSMessageTableViewCell.h"
 #import "SSMessageTableViewCellBubbleView.h"
 #import "SSTextField.h"
+#import "UIView+FormScroll.h"
 
 CGFloat kInputHeight = 40.0f;
 
@@ -155,14 +156,12 @@ CGFloat kInputHeight = 40.0f;
     [UIView beginAnimations:@"beginEditing" context:_inputBackgroundView];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	[UIView setAnimationDuration:0.3f];
-    //    CGFloat bottomInset = appDelegate.window.frame.size.height - 264.0;
     CGFloat bottomInset = keyboardFrame.size.height + kInputHeight;
 	_tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, bottomInset, 0.0f);
 	_tableView.scrollIndicatorInsets = _tableView.contentInset;
     CGFloat y = self.view.frame.size.height - bottomInset;
 	_inputBackgroundView.frame = CGRectMake(0.0f, y, self.view.frame.size.width, kInputHeight);
 	[UIView commitAnimations];
-
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -176,6 +175,7 @@ CGFloat kInputHeight = 40.0f;
 	_tableView.contentInset = UIEdgeInsetsZero;
 	_tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
 	_inputBackgroundView.frame = CGRectMake(0.0f, _tableView.frame.size.height, self.view.frame.size.width, kInputHeight);
+    [self.tableView scrollToY:0];
 	[UIView commitAnimations];
 }
 
