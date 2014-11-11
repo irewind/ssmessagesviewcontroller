@@ -93,7 +93,7 @@ CGFloat kInputHeight = 40.0f;
     NSValue* v = notif.userInfo[UIKeyboardFrameBeginUserInfoKey];
     CGRect r = v.CGRectValue;
     
-    CGRect f = [self.view convertRect:r fromView:appDelegate.window.rootViewController.view];
+    CGRect f = [self.view convertRect:r fromView:((AppDelegate*)[UIApplication sharedApplication].delegate).window.rootViewController.view];
     
     [self animateForKeyboardWithFrame:f];
 }
